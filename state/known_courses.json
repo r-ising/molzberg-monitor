@@ -1,2 +1,29 @@
 [
+  {
+    "course_id": "KINDERKURS KSK06-15",
+    "price": "160,00 €",
+    "date_time": "09.09.2025 - 09.10.2025, Dienstag & Donnerstag, 15:00 - 16:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "ausgebucht",
+    "booking_link": "#"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-16",
+    "price": "160,00 €",
+    "date_time": "09.09.2025 - 09.10.2025, Dienstag & Donnerstag, 16:00 - 17:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "Klick auf den Button öffnet ein PDF-Formular. Füllen Sie das Formular aus und senden Sie es an kurse@molzbergbad.de zurück. Bitte nutzen Sie dabei die Kursnummer oben als Betreff Ihrer Nachricht.",
+    "booking_link": "https://cdn.prod.website-files.com/669625539019fc3016b61324/686f4dc463771d2505b01a07_Anmeldung_KSK06-16.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-17",
+    "price": "160,00 €",
+    "date_time": "09.09.2025 - 09.10.2025, Dienstag & Donnerstag, 17:00 - 18:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "Klick auf den Button öffnet ein PDF-Formular. Füllen Sie das Formular aus und senden Sie es an kurse@molzbergbad.de zurück. Bitte nutzen Sie dabei die Kursnummer oben als Betreff Ihrer Nachricht.",
+    "booking_link": "https://cdn.prod.website-files.com/669625539019fc3016b61324/686f4dc405af424d836026a9_Anmeldung_KSK06-17.pdf"
+  }
 ]
