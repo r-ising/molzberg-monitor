@@ -1,11 +1,74 @@
 [
   {
-    "course_id": "TEST_001",
-    "price": "50,00 €",
-    "date_time": "Test schedule",
-    "location": "Test location",
+    "course_id": "KINDERKURS KSK06-16",
+    "price": "160,00 €",
+    "date_time": "21.05. - 20.06.2024 Dienstags und Donnerstags von 16:00 - 17:00 Uhr",
+    "location": "Mehrzweckbecken",
     "participants": "max. 10",
-    "booking_status": "Test booking",
-    "booking_link": "https://test.com"
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-16.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-17",
+    "price": "160,00 €",
+    "date_time": "21.05. - 20.06.2024 Dienstags und Donnerstags von 17:00 - 18:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-17.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-18",
+    "price": "160,00 €",
+    "date_time": "21.05. - 20.06.2024 Dienstags und Donnerstags von 18:00 - 19:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-18.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-19",
+    "price": "160,00 €",
+    "date_time": "22.05. - 21.06.2024 Mittwochs und Freitags von 15:00 - 16:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-19.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-20",
+    "price": "160,00 €",
+    "date_time": "22.05. - 21.06.2024 Mittwochs und Freitags von 16:00 - 17:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-20.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-21",
+    "price": "160,00 €",
+    "date_time": "22.05. - 21.06.2024 Mittwochs und Freitags von 17:00 - 18:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-21.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-22",
+    "price": "160,00 €",
+    "date_time": "22.05. - 21.06.2024 Mittwochs und Freitags von 18:00 - 19:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-22.pdf"
+  },
+  {
+    "course_id": "KINDERKURS KSK06-23",
+    "price": "160,00 €",
+    "date_time": "22.05. - 21.06.2024 Mittwochs und Freitags von 19:00 - 20:00 Uhr",
+    "location": "Mehrzweckbecken",
+    "participants": "max. 10",
+    "booking_status": "AUSGEBUCHT",
+    "booking_link": "/documents/Anmeldeformular_KSK06-23.pdf"
   }
 ]
