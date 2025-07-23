@@ -63,19 +63,19 @@ class CourseScraper:
         Return the result as a valid JSON array containing objects with the following structure:
         [
             {
-                "course_id": "unique_course_identifier_like_KINDERKURS_KSK06-16",
-                "price": "course_price_with_currency_like_160,00_€",
-                "date_time": "course_schedule_with_dates_and_times",
-                "location": "course_location_like_Mehrzweckbecken",
-                "participants": "max_participants_like_max._10",
-                "booking_status": "booking_instructions_or_status",
-                "booking_link": "PDF_form_link_or_registration_link"
+                "course_id": "",
+                "price": "",
+                "date_time": "",
+                "location": "",
+                "participants": "",
+                "booking_status": "",
+                "booking_link": ""
             }
         ]
         
         Important:
-        - The "course_id" field should be a unique identifier extracted from the course (like "KINDERKURS KSK06-16")
-        - Extract exact price format including currency symbol (like "160,00 €")
+        - The "course_id" field should be a unique identifier extracted from the course (like "KINDERKURS KSK00-00")
+        - Extract exact price format including currency symbol (like "10,00 €")
         - Include full date and time information in "date_time" field
         - Include location/pool information in "location" field
         - Extract participant limits in "participants" field
@@ -84,9 +84,10 @@ class CourseScraper:
         - If certain information is not available, use null or an empty string
         - Only return valid JSON, no additional text or explanation
         - Focus on actual swim courses for beginners/anfänger and children/kinder
+        - Under no circumstances should you make up data.
         
         HTML Content:
-        """ + html_content[:8000]  # Limit content to avoid token limits
+        """ + html_content
         
         try:
             response = self.model.generate_content(prompt)
