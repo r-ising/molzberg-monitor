@@ -1,0 +1,57 @@
+name: Daily Swim Course Checker
+
+on:
+  # Run every day at 8:00 AM UTC
+  schedule:
+    - cron: '0 8 * * *'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Required to commit state file changes
+
+jobs:
+  check-courses:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run course scraper
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        MAILJET_API_KEY_PUBLIC: ${{ secrets.MAILJET_API_KEY_PUBLIC }}
+        MAILJET_API_KEY_PRIVATE: ${{ secrets.MAILJET_API_KEY_PRIVATE }}
+        MAILJET_SENDER_EMAIL: ${{ secrets.MAILJET_SENDER_EMAIL }}
+        RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+      run: |
+        python course_scraper.py
+    
+    - name: Commit and push state changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Check if there are any changes to commit
+        if git diff --quiet; then
+          echo "No changes to commit"
+        else
+          git add state/known_courses.json
+          git commit -m "Update known courses state [skip ci]"
+          git push
+        fi
