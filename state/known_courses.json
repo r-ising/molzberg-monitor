@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "course_id": "TEST_001",
+    "price": "50,00 €",
+    "date_time": "Test schedule",
+    "location": "Test location",
+    "participants": "max. 10",
+    "booking_status": "Test booking",
+    "booking_link": "https://test.com"
+  }
+]

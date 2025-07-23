@@ -63,21 +63,27 @@ class CourseScraper:
         Return the result as a valid JSON array containing objects with the following structure:
         [
             {
-                "id": "unique_identifier_for_the_course",
-                "name": "course_name",
-                "description": "course_description_if_available",
-                "date": "course_date_if_available",
-                "time": "course_time_if_available",
-                "price": "course_price_if_available",
-                "instructor": "instructor_name_if_available"
+                "course_id": "unique_course_identifier_like_KINDERKURS_KSK06-16",
+                "price": "course_price_with_currency_like_160,00_€",
+                "date_time": "course_schedule_with_dates_and_times",
+                "location": "course_location_like_Mehrzweckbecken",
+                "participants": "max_participants_like_max._10",
+                "booking_status": "booking_instructions_or_status",
+                "booking_link": "PDF_form_link_or_registration_link"
             }
         ]
         
         Important:
-        - The "id" field should be a unique identifier that can be used to detect if this is a new course
+        - The "course_id" field should be a unique identifier extracted from the course (like "KINDERKURS KSK06-16")
+        - Extract exact price format including currency symbol (like "160,00 €")
+        - Include full date and time information in "date_time" field
+        - Include location/pool information in "location" field
+        - Extract participant limits in "participants" field
+        - Include booking instructions or status in "booking_status" field
+        - Include any PDF form links or registration links in "booking_link" field
         - If certain information is not available, use null or an empty string
         - Only return valid JSON, no additional text or explanation
-        - Focus on actual swim courses for beginners/anfänger
+        - Focus on actual swim courses for beginners/anfänger and children/kinder
         
         HTML Content:
         """ + html_content[:8000]  # Limit content to avoid token limits
@@ -102,7 +108,7 @@ class CourseScraper:
                 raise ValueError("Response is not a list")
             
             for course in courses:
-                if not isinstance(course, dict) or 'id' not in course:
+                if not isinstance(course, dict) or 'course_id' not in course:
                     raise ValueError("Invalid course structure")
             
             return courses
@@ -135,11 +141,11 @@ class CourseScraper:
     def find_new_courses(self, current_courses: List[Dict[str, Any]], 
                         known_courses: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Compare current courses with known courses to find new ones"""
-        known_ids = {course.get('id') for course in known_courses}
+        known_ids = {course.get('course_id') for course in known_courses}
         new_courses = []
         
         for course in current_courses:
-            course_id = course.get('id')
+            course_id = course.get('course_id')
             if course_id and course_id not in known_ids:
                 new_courses.append(course)
         
@@ -165,18 +171,20 @@ class CourseScraper:
         body += "=" * 50 + "\n\n"
         
         for i, course in enumerate(new_courses, 1):
-            body += f"{i}. {course.get('name', 'Unknown Course')}\n"
-            if course.get('description'):
-                body += f"   Description: {course['description']}\n"
-            if course.get('date'):
-                body += f"   Date: {course['date']}\n"
-            if course.get('time'):
-                body += f"   Time: {course['time']}\n"
+            body += f"{i}. Course ID: {course.get('course_id', 'Unknown Course')}\n"
             if course.get('price'):
                 body += f"   Price: {course['price']}\n"
-            if course.get('instructor'):
-                body += f"   Instructor: {course['instructor']}\n"
-            body += f"   Course ID: {course.get('id', 'N/A')}\n\n"
+            if course.get('date_time'):
+                body += f"   Schedule: {course['date_time']}\n"
+            if course.get('location'):
+                body += f"   Location: {course['location']}\n"
+            if course.get('participants'):
+                body += f"   Participants: {course['participants']}\n"
+            if course.get('booking_status'):
+                body += f"   Booking: {course['booking_status']}\n"
+            if course.get('booking_link'):
+                body += f"   Registration Form: {course['booking_link']}\n"
+            body += "\n"
         
         body += "\nPlease visit the website to register for the courses.\n"
         body += "\n---\nThis is an automated notification from the Molzberg Monitor."

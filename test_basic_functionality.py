@@ -21,22 +21,22 @@ def test_state_management():
     # Create test data
     test_courses = [
         {
-            "id": "test_course_1",
-            "name": "Beginner Swimming Course",
-            "description": "Basic swimming for beginners",
-            "date": "2024-01-15",
-            "time": "10:00 AM",
-            "price": "50 EUR",
-            "instructor": "John Doe"
+            "course_id": "KINDERKURS_TEST_01",
+            "price": "50,00 €",
+            "date_time": "15.01.2024 - 29.01.2024 immer Montag & Mittwoch, 10:00 - 11:00 Uhr",
+            "location": "Mehrzweckbecken",
+            "participants": "max. 8",
+            "booking_status": "Anmeldung per PDF-Formular erforderlich",
+            "booking_link": "https://example.com/anmeldung_test_01.pdf"
         },
         {
-            "id": "test_course_2", 
-            "name": "Advanced Swimming Course",
-            "description": "Advanced techniques",
-            "date": "2024-01-20",
-            "time": "2:00 PM",
-            "price": "75 EUR",
-            "instructor": "Jane Smith"
+            "course_id": "KINDERKURS_TEST_02",
+            "price": "75,00 €",
+            "date_time": "20.01.2024 - 03.02.2024 immer Dienstag & Donnerstag, 14:00 - 15:00 Uhr",
+            "location": "Kinderbecken",
+            "participants": "max. 10",
+            "booking_status": "Online-Anmeldung möglich",
+            "booking_link": "https://example.com/anmeldung_test_02.pdf"
         }
     ]
     
@@ -55,25 +55,25 @@ def test_state_management():
         # Test loading courses
         loaded_courses = scraper.load_known_courses()
         assert len(loaded_courses) == 2
-        assert loaded_courses[0]["id"] == "test_course_1"
+        assert loaded_courses[0]["course_id"] == "KINDERKURS_TEST_01"
         print("✓ Successfully loaded test courses")
         
         # Test finding new courses
         new_test_courses = test_courses + [
             {
-                "id": "test_course_3",
-                "name": "Water Safety Course",
-                "description": "Safety techniques",
-                "date": "2024-01-25",
-                "time": "9:00 AM",
-                "price": "30 EUR",
-                "instructor": "Bob Wilson"
+                "course_id": "KINDERKURS_TEST_03",
+                "price": "30,00 €",
+                "date_time": "25.01.2024 - 08.02.2024 immer Freitag, 09:00 - 10:00 Uhr",
+                "location": "Therapiebecken",
+                "participants": "max. 6",
+                "booking_status": "Warteliste verfügbar",
+                "booking_link": "https://example.com/anmeldung_test_03.pdf"
             }
         ]
         
         new_courses = scraper.find_new_courses(new_test_courses, loaded_courses)
         assert len(new_courses) == 1
-        assert new_courses[0]["id"] == "test_course_3"
+        assert new_courses[0]["course_id"] == "KINDERKURS_TEST_03"
         print("✓ Successfully identified new courses")
         
         # Clean up test file
@@ -92,13 +92,13 @@ def test_email_formatting():
     
     test_courses = [
         {
-            "id": "course_1",
-            "name": "Morning Swim Class",
-            "description": "Early morning session",
-            "date": "2024-01-15",
-            "time": "07:00 AM",
-            "price": "40 EUR",
-            "instructor": "Maria Garcia"
+            "course_id": "KINDERKURS_MORNING_01",
+            "price": "40,00 €",
+            "date_time": "15.01.2024 - 29.01.2024 immer Montag, 07:00 - 08:00 Uhr",
+            "location": "Mehrzweckbecken",
+            "participants": "max. 12",
+            "booking_status": "Anmeldung per E-Mail an kurse@molzbergbad.de",
+            "booking_link": "https://example.com/anmeldung_morning_01.pdf"
         }
     ]
     
@@ -115,18 +115,20 @@ def test_email_formatting():
             body += "=" * 50 + "\n\n"
             
             for i, course in enumerate(new_courses, 1):
-                body += f"{i}. {course.get('name', 'Unknown Course')}\n"
-                if course.get('description'):
-                    body += f"   Description: {course['description']}\n"
-                if course.get('date'):
-                    body += f"   Date: {course['date']}\n"
-                if course.get('time'):
-                    body += f"   Time: {course['time']}\n"
+                body += f"{i}. Course ID: {course.get('course_id', 'Unknown Course')}\n"
                 if course.get('price'):
                     body += f"   Price: {course['price']}\n"
-                if course.get('instructor'):
-                    body += f"   Instructor: {course['instructor']}\n"
-                body += f"   Course ID: {course.get('id', 'N/A')}\n\n"
+                if course.get('date_time'):
+                    body += f"   Schedule: {course['date_time']}\n"
+                if course.get('location'):
+                    body += f"   Location: {course['location']}\n"
+                if course.get('participants'):
+                    body += f"   Participants: {course['participants']}\n"
+                if course.get('booking_status'):
+                    body += f"   Booking: {course['booking_status']}\n"
+                if course.get('booking_link'):
+                    body += f"   Registration Form: {course['booking_link']}\n"
+                body += "\n"
             
             body += "\nPlease visit the website to register for the courses.\n"
             body += "\n---\nThis is an automated notification from the Molzberg Monitor."

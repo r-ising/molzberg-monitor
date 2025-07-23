@@ -102,12 +102,13 @@ When new courses are detected, you'll receive an email with:
 
 - Subject: "🏊 New Swim Courses Available at Freizeitbad Molzberg (X found)"
 - Detailed information for each new course including:
-  - Course name
-  - Description (if available)
-  - Date and time (if available)
-  - Price (if available)
-  - Instructor (if available)
-  - Unique course ID
+  - Course ID (unique identifier like "KINDERKURS KSK06-16")
+  - Price (with currency, e.g., "160,00 €")
+  - Schedule (dates and times)
+  - Location (pool location, e.g., "Mehrzweckbecken")
+  - Participants (maximum number, e.g., "max. 10")
+  - Booking status/instructions
+  - Registration form link (PDF)
 
 ## Troubleshooting
 
