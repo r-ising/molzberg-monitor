@@ -41,7 +41,7 @@ class CourseScraper:
             raise CourseScraperError("GEMINI_API_KEY environment variable not set")
         
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
+        self.model = genai.GenerativeModel('gemini-2.5-flash')
     
     def fetch_website_content(self) -> str:
         """Fetch HTML content from the target website"""
