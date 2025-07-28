@@ -238,14 +238,13 @@ class CourseScraper:
                 print("Sending email notification...")
                 self.send_notification(new_courses)
                 
-                # Step 6: Update state file
+                # Step 6: Update state file only when new course IDs are found
                 print("Updating known courses state...")
                 self.save_known_courses(current_courses)
                 print("State file updated successfully")
             else:
                 print("No new courses detected. No notification sent.")
-                # Still update the state in case course details changed
-                self.save_known_courses(current_courses)
+                print("State file not updated (only updates when course IDs change)")
             
             print("Course scraper completed successfully!")
             return len(new_courses) > 0
